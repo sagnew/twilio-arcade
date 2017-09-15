@@ -58,7 +58,7 @@ def handle_key():
     digit_pressed = request.values.get('Digits', None)
     button_file = 'p1.txt'
 
-    if request.form['Called'] in player_two_buttons:
+    if request.form['Called'] in player_two_numbers:
         button_file = 'p2.txt'
 
     with open(button_file, 'w') as f:
