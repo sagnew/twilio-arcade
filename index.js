@@ -37,6 +37,7 @@ app.post('/handle-key', (req, res) => {
     numDigits: '1',
     action: '/handle-key',
     method: 'POST',
+    timeout: '9999'
   });
 
   res.send(twiml.toString());
@@ -51,6 +52,7 @@ app.post('/voice', (req, res) => {
     numDigits: '1',
     action: '/handle-key',
     method: 'POST',
+    timeout: '9999'
   });
 
   res.send(twiml.toString());
