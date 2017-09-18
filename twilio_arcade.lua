@@ -44,18 +44,37 @@ function press_button(player, button, frames)
     end
 end
 
+function press_buttons(p1_button, p2_button, frames)
+    p1_table = {}
+    p2_table = {}
+
+    -- Hold the button down for some number of frames.
+    for i=1, frames do
+        if has_value(buttons, p1_button) then
+            p1_table[p1_button] = true
+            joypad.set(1, p1_table)
+        end
+
+        if has_value(buttons, p2_button) then
+            p2_table[p2_button] = true
+            joypad.set(2, p2_table)
+        end
+
+        emu.frameadvance()
+    end
+end
+
 buttons = { 'A', 'B', 'X', 'Y', 'up', 'down', 'left', 'right', 'start', 'select' }
 
 while true do
-    button = read_file('p1.txt')
-    if button ~= nil then
-        if has_value(buttons, button) then
-            emu.message('Pressing: ' .. button)
+    p1_button = read_file('p1.txt')
+    p2_button = read_file('p2.txt')
 
-            -- Press player 1's button for 5 frames.
-            press_button(1, button, 30)
-            os.remove('p1.txt')
-        end
+    if p1_button ~= nil or p2_button ~= nil then
+
+        press_buttons(p1_button, p2_button, 10)
+        os.remove('p1.txt')
+        os.remove('p2.txt')
     end
 
     emu.frameadvance()

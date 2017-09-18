@@ -37,7 +37,6 @@ app.post('/handle-key', (req, res) => {
     numDigits: '1',
     action: '/handle-key',
     method: 'POST',
-    timeout: '10000'
   });
 
   res.send(twiml.toString());
@@ -47,6 +46,7 @@ app.post('/voice', (req, res) => {
   console.log(req.body.Body);
 
   let twiml = new twilio.TwimlResponse();
+  twiml.say('Connected. Refer to the instructions on screen for which buttons to press.');
   twiml.gather({
     numDigits: '1',
     action: '/handle-key',
