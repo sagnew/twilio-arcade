@@ -33,17 +33,7 @@ function has_value (tab, val)
     return false
 end
 
-function press_button(player, button, frames)
-    input_table = {}
-    input_table[button] = true
-
-    -- Hold the button down for some number of frames.
-    for i=1, frames do
-        joypad.set(player, input_table)
-        emu.frameadvance()
-    end
-end
-
+-- Presses buttons for both players for a given number of frames.
 function press_buttons(p1_button, p2_button, frames)
     p1_table = {}
     p2_table = {}
